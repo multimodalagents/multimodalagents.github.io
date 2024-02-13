@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Multimodal Agent Workshop">
+  <meta name="keywords" content="Multimodal Agent Workshop">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CVPR 2024 Tutorial on Multimodal Agent AI</title>
+
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<style>
+.btn {
+  background-color: Gray;
+  border: none;
+  color: white;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.sponsors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    align-items: center;
+}
+
+.sponsor img {
+    max-width: 100px; /* Default size for all logos */
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.sponsor img:hover {
+    transform: scale(1.1);
+}
+
+/* Specific style for the Microsoft Research logo */
+.sponsor img[alt="Microsoft Research"] {
+    max-width: 200px; /* Increasing the size specifically for MSR logo since it is smaller */
+}
+
+.is-rounded img:hover {
+  transform: scale(1.1);
+}
+
+.is-rounded {border-radius: 12px;}
+
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: Silver;
+}
+
+a {
+	color: inherit;
+    text-decoration: none;
+}
+
+.centered {
+  text-align: center;
+}
+
+.publication-video {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+
+  overflow: hidden;
+  border-radius: 10px !important;
+}
+
+.publication-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+<link rel="stylesheet" href="static/css/index.css">
+<script src="https://kit.fontawesome.com/b25d0fd750.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+function UpdateTaskIllustration() {
+  var task = document.getElementById("illu-task").value;
+  console.log("illu", task)
+  var img = document.getElementById("task-illustration");
+  img.src = "assets/" + "illu-" + task + ".png"
+}
+
+function UpdateTaskDemonstration() {
+  var task = document.getElementById("demo-task").value;
+  console.log("demo", task)
+  var video = document.getElementById("task-demonstration");
+  video.src = "assets/" + "demo-" + task + ".mp4"
+  video.playbackRate = 1.75;
+  video.play();
+}
+</script>
+
+</head>
+
+<body onload="UpdateTaskIllustration(); UpdateTaskDemonstration();">
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">
+            <span style="font-size: smaller;"><a href="https://cvpr.thecvf.com/">CVPR2024</a> Tutorial on</span><br>
+            Multimodal Agent AI
+          </h1>
+          
+          
+          <div class="is-size-5 publication-authors">
+	    <span class="author-block">
+            <a target="_blank" href="https://www.microsoft.com/en-us/research/people/nawake/">Naoki Wake</a><sup>1⚐</sup>,</span>
+            </span>
+		  
+            <span class="author-block">
+              <a target="_blank" href="https://zanedurante.github.io/">Zane Durante</a><sup>2⚐</sup>,
+            </span>
+
+            <span class="author-block">
+              <a target="_blank" href="https://nikepupu.github.io/">Ran Gong</a><sup>3</sup>,
+            </span>
+
+            <span class="author-block">
+              <a target="_blank" href="https://homes.cs.washington.edu/~jspark96/">Jae Sung Park</a><sup>4</sup>,
+            </span>
+
+            <span class="author-block">
+              <a target="_blank" href="https://bsarkar321.github.io/">Bidipta Sarkar</a><sup>2</sup>,
+            </span>
+
+            <span class="author-block">
+              <a target="_blank" href="https://www.rohantaori.com/">Rohan Taori</a><sup>2</sup>,
+            </span>
+            
+            <span class="author-block">
+              <a target="_blank" href="https://www.linkedin.com/in/yusuke-noda-908797/">Yusuke Noda</a><sup>5</sup>,
+            </span>
+	    </div>
+	    <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a target="_blank" href="https://web.cs.ucla.edu/~dt/">Demetri Terzopoulos</a><sup>3</sup>,
+            </span>
+
+            <span class="author-block">
+              <a target="_blank" href="https://homes.cs.washington.edu/~yejin/">Yejin Choi</a><sup>4</sup>,
+            </span>
+
+            <span class="author-block">
+              <a target="_blank" href="https://www.microsoft.com/en-us/research/people/katsuike/">Katsushi Ikeuchi</a><sup>1</sup>,</span>
+            </span>
+
+	    <span class="author-block">
+            <a target="_blank" href="https://www.linkedin.com/in/hoi-vo-193420/">Hoi Vo</a><sup>5</sup>,
+            </span>
+
+            <span class="author-block">
+              <a target="_blank" href="https://profiles.stanford.edu/fei-fei-li/">Li Fei-Fei</a><sup>2</sup>,
+            </span>
+
+            <span class="author-block">
+              <a target="_blank" href="https://www.microsoft.com/en-us/research/people/jfgao/">Jianfeng Gao</a><sup>1</sup>,
+            </span>
+
+	   <span class="author-block">
+              <a target="_blank" href="https://www.microsoft.com/en-us/research/people/qihua/">Qiuyuan Huang</a><sup>1⚐</sup></span>
+            </span>
+            
+          </div>
+
+          <div class="is-size-6.5 publication-authors">
+            <span class="author-block"><sup>1</sup>Microsoft Research, Redmond,</span>
+            <span class="author-block"><sup>2</sup>Stanford University,</span>
+            <span class="author-block"><sup>3</sup>University of California, Los Angeles,</span>
+            <span class="author-block"><sup>4</sup>University of Washington,</span>
+            <span class="author-block"><sup>5</sup>Microsoft Gaming</span>
+          </div>
+
+	  <div class="is-size-6.3 publication-authors">
+	  <span class="author-block"><sup>⚐</sup>Tutorial Lead</span>
+	  </div>
+        
+
+            <!-- Code Link. -->
+            <!-- <span class="link-block">
+              <a target="_blank" href="https://github.com/mindagent/mindagent"
+                 class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="fab fa-github"></i>
+                </span>
+                <span>Code (Coming Soon)</span>
+              </a>
+            </span> -->
+
+            <!-- Docs Link. -->
+            <!-- <span class="link-block">
+              <a target="_blank" href="https://arnold-docs.readthedocs.io/en/latest/"
+                 class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="fas fa-book"></i>
+                </span>
+                <span>Docs</span>
+              </a>
+            </span> -->
+
+            <!-- Data Link. -->
+            <!-- <span class="link-block">
+              <a target="_blank" href="https://drive.google.com/drive/folders/1yaEItqU9_MdFVQmkKA6qSvfXy_cPnKGA?usp=sharing"
+                 class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="fa fa-database"></i>
+                </span>
+                <span>Data</span>
+              </a>
+            </span> -->
+
+            <!-- Video Link. -->
+            <!-- <span class="link-block">
+              <a target="_blank" href="https://youtu.be/w-Cp1PRDWzI"
+                 class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="fab fa-youtube"></i>
+                </span>
+                <span>Video</span>
+              </a>
+            </span> -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="margin-top: -4rem;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3"> Time and Venue </h2>
+        <dl class="row">
+          <dt class="col-sm-2" style="display: inline-block; margin-right: 5px;"><strong>Date:</strong></dt>
+          <dd class="col-sm-10" style="display: inline-block; margin-left: 0;">June 17 or 18, 2024</dd>
+          <br>
+          <dt class="col-sm-2" style="display: inline-block; margin-right: 5px;"><strong>Time:</strong></dt>
+          <dd class="col-sm-10" style="display: inline-block; margin-left: 0;">8:30am - 12:30pm</dd>
+          <br>
+          <dt class="col-sm-2" style="display: inline-block; margin-right: 5px;"><strong>Room:</strong></dt>
+          <dd class="col-sm-10" style="display: inline-block; margin-left: 0;">TBD</dd>
+          <br>
+          <dt class="col-sm-2" style="display: inline-block; margin-right: 5px;"><strong>Venue:</strong></dt>
+          <dd class="col-sm-10" style="display: inline-block; margin-left: 0;">Seattle Convention Center, Seattle, USA</dd>
+          <br>
+          <dt class="col-sm-2" style="display: inline-block; margin-right: 5px;"><strong>Zoom:</strong></dt>
+          <dd class="col-sm-10" style="display: inline-block; margin-left: 0;"><a href="https://zoom.us/j/1234567890">Zoom Meeting Link</a></dd>
+        </dl>
+      </div>
+    </div>
+    <br>
+    <br>
+  </div>
+</section>
+
+
+
+<section class="section" style="margin-top: -4rem;">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Overview</h2>
+        <div class="content has-text-justified">
+          <p>
+            <strong>Multimodal Agent AI (MAA)</strong> is a family of systems that generate effective actions in a given environment based on the understanding of multimodal sensory input. With the advent of Large Language Models (LLMs) and Vision-Language Models (VLMs), numerous MAA systems have been proposed in fields ranging from basic research to applications. While these research areas are growing rapidly by integrating with the traditional technologies of each domain (e.g., visual question answering and vision-language navigation), they share common interests such as data collection, benchmarking, and ethical perspectives. In this tutorial, we focus on the some representative research areas of MAA, namely multimodality, gaming (VR/AR/MR), robotics, and healthcare, and we aim to provide comprehensive knowledge on the common concerns discussed in these fields. As a result we expect the participants to learn the fundamentals of MAA and gain insights to further advance their research. Specific learning outcomes include:
+          </p>
+          <ul>
+            <li>              
+              <strong>MAA Overview:</strong> A deep dive into its principles and roles in contemporary applications, providing attendees with a thorough grasp of its importance and uses.
+            </li>
+            <li>                      
+              <strong>Methodologies:</strong> Detailed examples of how LLMs and VLMs enhance MAAs, illustrated through case studies in gaming, robotics, and healthcare.
+            </li>
+            <li>                      
+              <strong>Performance Evaluation:</strong> Guidance on the assessment of MAAs with relevant datasets, focusing on their effectiveness and generalization.
+            </li>
+            <li>                      
+              <strong>Ethical Considerations:</strong> A discussion on the societal impacts and ethical challenges of deploying Agent AI, highlighting responsible development practices.
+            </li>
+            <li>
+              <strong>Emerging Trends and Future Challenges:</strong> Categorize the latest developments in each domain and discuss the future directions.
+            </li>
+          </ul>
+          <p>
+            Led by esteemed experts from academia and industry, we expect that the tutorial will be an interactive and enriching experience, complete with lectures, case studies, Q&amp;A sessions, and panel discussion ensuring a comprehensive and engaging learning experience for all participants. 
+            </p>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <!--/ Abstract. -->
+
+  </div>
+
+  <section class="section" style="margin-top: -4rem;">
+    <div class="container is-max-desktop">
+      <!-- Invited Speaker. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3"> Tutorial Materials </h2>
+          <p>Download links will be available</p>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <!--/ Challenge. -->
+    </div>
+  </section>
+
+  <section class="section" style="margin-top: -4rem;">
+    <div class="container is-max-desktop">
+      <!-- Timeline. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3"> Timetable Schedule</h2>
+          <div class="content has-text-justified">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Time Slot</th>
+                  <th scope="col">Talk Scheduling</th>
+                  <th scope="col">Areas</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>08:30 - 09:00</strong></td>
+                  <td>Jianfeng Gao</td>
+                  <td>Opening Remarks</td>
+                </tr>
+                <tr>
+                  <td><strong>09:00 - 09:30</strong></td>
+                  <td>Talk1: Yejin Choi</td>
+                  <td>Knowledge Agent</td>
+                </tr>
+                <tr>
+                  <td><strong>09:30 - 10:00</strong></td>
+                  <td>Talk2: Katsushi Ikeuchi</td>
+                  <td>Agent Robotics</td>
+                </tr>
+                <tr>
+                  <td><strong>10:00 - 10:30</strong></td>
+                  <td>Talk3: Fei-Fei Li</td>
+                  <td>Agent Fondation-Models</td>
+                </tr>
+                <tr>
+                  <td><strong>10:30 - 10:45</strong></td>
+                  <td>Coffee Break</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td><strong>10:45 - 12:00</strong></td>
+                  <td><p>Fei-Fei Li, Yejin Choi, Demetri Terzopoulos,</p>
+		      <p>Katsushi Ikeuchi, Hoi Vo, Jianfeng Gao</p></td>
+                  <td>Panels and Q&amp;A</td>
+                </tr>
+                <tr>
+                  <td><strong>12:00 - 12:30</strong></td>
+                  <td>Naoki Wake and Hoi Vo</td>
+                  <td>Ending Discussion</td>
+                </tr>
+              </tbody>
+            </table>
+            
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <!--/ Timeline. -->
+  
+    </div>
+
+
+    <section class="section" style="margin-top: -4rem;">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-centered">
+            <h2 class="title is-3">Invited Speakers</h2>
+            <div class="columns is-justify-content-center">
+              <!-- Speaker 1 -->
+              <div class="column" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <figure class="image is-128x128">
+                  <img class="is-rounded" src="img/Yejin_Choi.jpg" alt="Yejin Choi">
+                  <figcaption><a href="https://homes.cs.washington.edu/~yejin/">Yejin Choi</a></figcaption>
+                </figure>
+              </div>              
+              <!-- Speaker 2 -->
+              <div class="column" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <figure class="image is-128x128">
+                  <img class="is-rounded" src="img/Katsushi_Ikeuchi.jpg"alt="Katsushi Ikeuchi">
+                  <figcaption><a href="https://www.microsoft.com/en-us/research/people/katsuike/">Katsushi Ikeuchi</a></figcaption>
+                </figure>
+              </div>
+              <!-- Speaker 3 -->
+              <div class="column" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <figure class="image is-128x128">
+                  <img class="is-rounded" src="img/Fei-Fei_Li.jpg" alt="Fei-Fei Li">
+                  <figcaption><a href="https://engineering.stanford.edu/people/fei-fei-li">Fei-Fei Li</a></figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br><br>
+      </div>
+    </section>
+    
+    
+
+    <section class="section" style="margin-top: -4rem;">
+      <div class="container is-max-desktop">
+        <!-- Invited Speaker. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+	    <h2 class="title is-3">Organizers</h2>
+            <div class="columns is-justify-content-center">
+	            <!-- Naoki -->
+              <div class="column" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <figure class="image is-128x128">
+                  <img class="is-rounded" src="img/Naoki_Wake.jpg" alt="Naoki Wake">
+                  <figcaption><a href="https://www.microsoft.com/en-us/research/people/nawake/">Naoki Wake</a></figcaption>
+                </figure>
+              </div>     
+              <!-- Zane -->
+              <div class="column" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                      <figure class="image is-128x128">
+                        <img class="is-rounded" src="img/Zane_Durante_square.jpg" alt="Zane Durante">
+                        <figcaption><a href="https://zanedurante.github.io/">Zane Durante</a></figcaption>
+                      </figure>
+              </div> 
+              <!-- Steven -->
+              <div class="column" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <figure class="image is-128x128">
+                  <img class="is-rounded" src="img/Ran_Gong_square.jpeg" alt="Ran Gong">
+                  <figcaption><a href="https://nikepupu.github.io/">Ran Gong</a></figcaption>
+                </figure>
+              </div>   
+              <!-- James -->
+              <div class="column" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <figure class="image is-128x128">
+                  <img class="is-rounded" src="img/Jae_Sung_Park_square.jpg" alt="Jae Sung Park">
+                  <figcaption><a href="https://homes.cs.washington.edu/~jspark96/">Jae Sung Park</a></figcaption>
+                </figure>
+              </div>   
+              <!-- Bidipta -->
+              <div class="column" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <figure class="image is-128x128">
+                  <img class="is-rounded" src="img/Bidipta_Sarkar.jpg" alt="Bidipta Sarkar">
+                  <figcaption><a href="https://bsarkar321.github.io/">Bidipta Sarkar</a></figcaption>
+                </figure>
+              </div>
+
+	      </div>     
+	      <div class="columns is-justify-content-center">
+              <!-- Rohan -->
+              <div class="column" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <figure class="image is-128x128">
+                  <img class="is-rounded" src="img/Rohan_Taori_square.jpeg" alt="Rohan Taori">
+                  <figcaption><a href="https://www.rohantaori.com/">Rohan Taori</a></figcaption>
+                </figure>
+              </div> 
+              <!-- Yusuke-->
+              <div class="column" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <figure class="image is-128x128">
+                  <img class="is-rounded" src="img/Yusuke_Noda.png" alt="Yusuke Noda">
+                  <figcaption><a href="https://www.linkedin.com/in/yusuke-noda-908797/">Yusuke Noda</a></figcaption>
+                </figure>
+              </div>          
+             <!-- Demetri Terzopoulos -->
+              <div class="column" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+              <figure class="image is-128x128">
+              <img class="is-rounded" src="img/DT.jpeg" alt="Demetri Terzopoulos">
+            <figcaption><a href="https://web.cs.ucla.edu/~dt/">Demetri Terzopoulos</a></figcaption>
+          </figure>
+        </div>
+        <!-- Yejin Choi -->
+        <div class="column" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+          <figure class="image is-128x128">
+            <img class="is-rounded" src="img/Yejin_Choi.jpg" alt="Yejin Choi">
+            <figcaption><a href="https://homes.cs.washington.edu/~yejin/">Yejin Choi</a></figcaption>
+          </figure>
+        </div>
+	      <!-- Katsushi -->
+              <div class="column" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <figure class="image is-128x128">
+                  <img class="is-rounded" src="img/Katsushi_Ikeuchi.jpg" alt="Katsushi Ikeuchi">
+                  <figcaption><a href="https://www.microsoft.com/en-us/research/people/katsuike/">Katsushi Ikeuchi</a></figcaption>
+                </figure>
+              </div>
+		      
+	       </div>     
+	      <div class="columns is-justify-content-center">
+	      <!-- Hoi Vo-->
+              <div class="column" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <figure class="image is-128x128">
+                  <img class="is-rounded" src="img/Hoi_Vo.png" alt="Hoi Vo">
+                  <figcaption><a href="https://www.linkedin.com/in/hoi-vo-193420/">Hoi Vo</a></figcaption>
+                </figure>
+	      </div>
+	      <!-- Feifei-->
+              <div class="column" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <figure class="image is-128x128">
+                  <img class="is-rounded" src="img/Fei-Fei_Li.jpg" alt="Fei-Fei Li">
+                  <figcaption><a href="https://engineering.stanford.edu/people/fei-fei-li">Fei-Fei Li</a></figcaption>
+                </figure>
+	       </div>
+	      <!-- Jianfeng Gao-->
+              <div class="column" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <figure class="image is-128x128">
+                  <img class="is-rounded" src="img/Jianfeng_Gao.jpg" alt="Jianfeng Gao">
+                  <figcaption><a href="https://www.microsoft.com/en-us/research/people/jfgao/">Jianfeng Gao</a></figcaption>
+                </figure>
+	       </div>
+	      <!-- Qiuyuan Huang-->
+              <div class="column" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                <figure class="image is-128x128">
+                  <img class="is-rounded" src="img/Qiuyuan_Huang.jpg" alt="Qiuyuan Huang">
+                  <figcaption><a href="https://www.microsoft.com/en-us/research/people/qihua/">Qiuyuan Huang</a></figcaption>
+		</figure>
+		</div>
+    </div>
+  </br>
+  <h2 class="title is-3">Sponsors and Organizations</h2>
+  <div class="sponsors-grid">
+      <div class="sponsor">
+          <img src="img/msr_logo.gif" alt="Microsoft Research">
+      </div>
+      <div class="sponsor">
+          <img src="img/stanford_logo.png" alt="Stanford">
+      </div>
+      <div class="sponsor">
+          <img src="img/ucla_logo.png" alt="UCLA">
+      </div>
+      <div class="sponsor">
+          <img src="img/uw_logo.png" alt="UW">
+      </div>
+  </div>
+        <br>
+        <br>
+        <!--/ Challenge. -->
+      </div>
+  </section>
+
+
+
+<section class="section">
+    <div class="container is-max-widescreen">
+  
+      <div class="rows">
+  
+      
+      </div>
+    </div>
+  </section>
+
+
+
+</body>
+</html>
